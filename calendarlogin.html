@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar Login</title>
+    <link rel="stylesheet" type="text/css" href="calendar.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="login">
+    <input type="text" id="username" placeholder="Username" /><br>
+    <input type="password" id="password" placeholder="Password" /><br>
+    <button id="login_btn">Log In</button>
+    <button id="register">Register</button>
+</div>
+<div id="welcome" hidden>
+    <p id="welcomeUser">Welcome!</p>
+    <button id="logout_btn">Log out</button>
+</div>
+
+<div id="tableDiv">
+    <table id="calendarTable">
+        <caption id="caption"><p></p></caption>
+        <thead>
+        <tr id="calHead">
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+        </thead>
+        <tbody id="calBody">
+        </tbody>
+    </table>
+    <button id="pre_month_btn">Previous Month</button>
+    <button id="next_month_btn">Next Month</button>
+</div>
+<div id="eventDiv" hidden>
+    <table id="eventTable">
+        <thead>
+        <tr>
+            <th>
+            <p>Title</p>
+            </th>
+            <th>
+                <input type="text" id="eveTitle" placeholder="Title" />
+                <input type="hidden" id="eveId"/>
+                <input type="hidden" id="checkCSRF" name="token">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><p>Tags</p></td>
+            <td><p id="eventTags"></p></td>
+        </tr>
+        <tr id="tagOpeTr">
+            <td><p>Tags Operation</p></td>
+            <td>
+                <input type="text" id="eveAddTag" placeholder="tag you want to add">
+                <button id="addTag_btn">Add tag</button><br>
+                <input type="text" id="eveDelTag" placeholder="tag you want to delete">
+                <button id="delTag_btn">Delete tag</button><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Time</p>
+            </td>
+            <td>
+                <input type="text" id="eveDate" placeholder="MM/DD/YYYY"/><br>
+                <input type="text" id="eveTime" placeholder="HH/mm"/>
+            </td>
+        </tr>
+        <tr>
+            <td><p>Creator:</p></td>
+            <td><p id="eveCreator"></p></td>
+        </tr>
+        <tr id="OpeTr">
+            <td colspan="2">
+                <button id="eveEdit_btn">Update</button>
+                <button id="eveDelete_btn">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td><p>Shared with</p></td>
+            <td><p id="sharedPeople"></p></td>
+        </tr>
+        <tr id="shareOpeTr">
+            <td><p>Share Operation</p></td>
+            <td>
+                <input type="text" id="addSharedEvent" placeholder="person you want to share">
+                <button id="addShare_btn">Add Person</button><br>
+                <input type="text" id="delSharedEvent" placeholder="person you no longer to share">
+                <button id="delShare_btn">Delete Share</button><br>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div id="addEvent" hidden>
+    <br>
+    <p>Please add new Event:</p>
+    Title:<input type="text" id="eTitle" placeholder="Title" /><br>
+    Date:<input type="text" id="eDate" placeholder="YYYY-MM-DD"/>
+    <input type="text" id="eTime" placeholder="HH/mm"/>
+
+    <button id="addEvent_btn">Add Event</button>
+</div>
+<script>
+    var aNewDate = new Date();
+    var aNewYear = aNewDate.getFullYear();
+    var aNewMonth = aNewDate.getMonth() + 1;
+    var aNewDay = aNewDate.getDate();
+    var currentDate = aNewYear + "-" + aNewMonth + "-" + aNewDay;
+    document.getElementById("eDate").value = currentDate;
+    var newTime = aNewDate.getHours() + ":" + aNewDate.getMinutes();
+    document.getElementById("eTime").value = newTime;
+</script>
+
+
+<script src="calendarlogin.js"></script>
+<script src="calEvent.js"></script>
+</body>
+</html>
